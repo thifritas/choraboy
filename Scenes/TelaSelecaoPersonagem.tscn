@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dek14rh3656fn"]
+
+[ext_resource type="Script" uid="uid://bwjrh58eddxm8" path="res://Scenes/TelaSelecaoPersonagem.gd" id="1_abfpt"]
+
+[node name="TelaSelecaoPersonagem" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_abfpt")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+layout_mode = 2

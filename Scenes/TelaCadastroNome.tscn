@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnkxnpcdxyxfv"]
+
+[ext_resource type="Script" uid="uid://8ulc2ursg245" path="res://TelaCadastroNome.gd" id="1_0jkwn"]
+[ext_resource type="Texture2D" uid="uid://bufxkf6vjrgpn" path="res://Assets/Screen/Mainframe.svg" id="2_4px1l"]
+
+[sub_resource type="Theme" id="Theme_4px1l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4px1l"]
+bg_color = Color(0.137255, 0.529412, 0.254902, 1)
+
+[node name="TelaCadastroNome" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0jkwn")
+
+[node name="Mainframe" type="Sprite2D" parent="."]
+position = Vector2(573, 325)
+scale = Vector2(0.152442, 0.152442)
+texture = ExtResource("2_4px1l")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 228.0
+offset_right = 727.0
+offset_bottom = 251.0
+theme = SubResource("Theme_4px1l")
+text = "Bem vindo ao Chora boy"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 473.0
+offset_top = 276.0
+offset_right = 672.0
+offset_bottom = 325.0
+text = "Insira seu nome
+"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 521.0
+offset_top = 395.0
+offset_right = 635.0
+offset_bottom = 423.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_4px1l")
+text = "Confirma"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 327.0
+offset_right = 727.0
+offset_bottom = 358.0
+placeholder_text = "Nome"
+alignment = 1

@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://do8vqrn1lishr"]
+
+[ext_resource type="Script" uid="uid://cqcqq0qfi71a2" path="res://Scenes/TelaSelecaoMapa.gd" id="1_u5q0q"]
+
+[node name="TelaSelecaoMapa" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u5q0q")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SaoPauloButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="RioDeJaneiroButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="VoltarButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 24.0
+offset_right = 32.0
+offset_bottom = 40.0
