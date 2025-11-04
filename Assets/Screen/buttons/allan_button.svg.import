@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sb7016achdwo"
-path="res://.godot/imported/Mainframe.svg-8e51601a5ecb416c95e52dd74a344c98.ctex"
+uid="uid://ekjbtmtlhsnc"
+path="res://.godot/imported/allan_button.svg-af003da6d6469d3b144df3b52fec1aec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Screen/Mainframe.svg"
-dest_files=["res://.godot/imported/Mainframe.svg-8e51601a5ecb416c95e52dd74a344c98.ctex"]
+source_file="res://Assets/Screen/buttons/allan_button.svg"
+dest_files=["res://.godot/imported/allan_button.svg-af003da6d6469d3b144df3b52fec1aec.ctex"]
 
 [params]
 

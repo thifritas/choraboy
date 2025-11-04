@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sb7016achdwo"
-path="res://.godot/imported/Mainframe.svg-8e51601a5ecb416c95e52dd74a344c98.ctex"
+uid="uid://bb2jlok4tj7o6"
+path="res://.godot/imported/mika_icon.png-cb5aaa25d1a18bd749e44ea3ccc4ae75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Screen/Mainframe.svg"
-dest_files=["res://.godot/imported/Mainframe.svg-8e51601a5ecb416c95e52dd74a344c98.ctex"]
+source_file="res://Assets/Screen/buttons/mika_icon.png"
+dest_files=["res://.godot/imported/mika_icon.png-cb5aaa25d1a18bd749e44ea3ccc4ae75.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnkxnpcdxyxfv"]
+[gd_scene load_steps=9 format=3 uid="uid://bnkxnpcdxyxfv"]
 
 [ext_resource type="Script" uid="uid://8ulc2ursg245" path="res://TelaCadastroNome.gd" id="1_0jkwn"]
-[ext_resource type="Texture2D" uid="uid://bufxkf6vjrgpn" path="res://Assets/Screen/Mainframe.svg" id="2_4px1l"]
+[ext_resource type="Texture2D" uid="uid://dsgf1dnd26w4a" path="res://Assets/Screen/buttons/green_button.svg" id="3_qe34u"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4px1l"]
+load_path = "res://.godot/imported/Mainframe.svg-8e51601a5ecb416c95e52dd74a344c98.ctex"
 
 [sub_resource type="Theme" id="Theme_4px1l"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4px1l"]
-bg_color = Color(0.137255, 0.529412, 0.254902, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4px1l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qe34u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lrvtx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ajdjs"]
 
 [node name="TelaCadastroNome" type="Control"]
 layout_mode = 3
@@ -20,7 +28,7 @@ script = ExtResource("1_0jkwn")
 [node name="Mainframe" type="Sprite2D" parent="."]
 position = Vector2(573, 325)
 scale = Vector2(0.152442, 0.152442)
-texture = ExtResource("2_4px1l")
+texture = SubResource("CompressedTexture2D_4px1l")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -40,20 +48,41 @@ offset_bottom = 325.0
 text = "Insira seu nome
 "
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 521.0
-offset_top = 395.0
-offset_right = 635.0
-offset_bottom = 423.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_4px1l")
-text = "Confirma"
-
 [node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 0
 offset_left = 425.0
-offset_top = 327.0
+offset_top = 329.0
 offset_right = 727.0
-offset_bottom = 358.0
+offset_bottom = 360.0
 placeholder_text = "Nome"
 alignment = 1
+
+[node name="Button" type="Button" parent="."]
+clip_contents = true
+layout_mode = 0
+offset_left = 479.0
+offset_top = 383.0
+offset_right = 667.0
+offset_bottom = 430.0
+theme_override_icons/icon = ExtResource("3_qe34u")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4px1l")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qe34u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lrvtx")
+text = "Confirma"
+icon_alignment = 1
+expand_icon = true
+
+[node name="ErrorLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 559.0
+offset_top = 530.0
+offset_right = -560.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ajdjs")
+horizontal_alignment = 1
