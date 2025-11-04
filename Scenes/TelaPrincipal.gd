@@ -2,10 +2,10 @@
 extends Control
 
 # Referências aos botões
-@onready var garagem_button: Button = $VBoxContainer/GaragemButton  # Ajuste os nomes dos nós conforme sua estrutura
-@onready var configuracao_button: Button = $VBoxContainer/ConfiguracaoButton
-@onready var loja_button: Button = $VBoxContainer/LojaButton
-@onready var correr_button: Button = $VBoxContainer/CorrerButton
+@onready var garagem_button: Button = $GaragemButton  # Ajuste os nomes dos nós conforme sua estrutura
+@onready var configuracao_button: Button = $ConfiguracaoButton
+@onready var loja_button: Button = $LojaButton
+@onready var correr_button: Button = $CorrerButton
 
 func _ready():
 	# Conecta todos os botões a uma função de navegação, passando o destino
