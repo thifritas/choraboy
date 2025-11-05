@@ -109,6 +109,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Button2" type="Button" parent="."]
+layout_mode = 0
 offset_left = 599.0
 offset_top = 283.0
 offset_right = 743.0

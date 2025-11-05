@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2d23myyp5eww"
-path="res://.godot/imported/Personagem_Allan.png-1deb2b6ad8913713a0833d2d7af6a004.ctex"
+path="res://.godot/imported/Allan.png-f033bc49e958c7c9c9ba3642284662c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Objects/Personagem_Allan.png"
-dest_files=["res://.godot/imported/Personagem_Allan.png-1deb2b6ad8913713a0833d2d7af6a004.ctex"]
+source_file="res://Objects/Allan.png"
+dest_files=["res://.godot/imported/Allan.png-f033bc49e958c7c9c9ba3642284662c3.ctex"]
 
 [params]
 

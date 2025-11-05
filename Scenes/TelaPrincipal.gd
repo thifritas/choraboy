@@ -7,6 +7,12 @@ extends Control
 @onready var loja_button: Button = $LojaButton
 @onready var correr_button: Button = $CorrerButton
 
+@onready var container_car: Control = $ContainerCar 
+@onready var container_character: Control = $ContainerCharacter
+
+const PLAYER_VISUAL_CENA = preload("res://Objects/PlayerVisual.tscn") # Pré-carrega a cena
+var player_visual_instance: Node2D = null
+
 func _ready():
 	# Conecta todos os botões a uma função de navegação, passando o destino
 	garagem_button.pressed.connect(func(): _ir_para("Garagem"))
@@ -14,10 +20,42 @@ func _ready():
 	loja_button.pressed.connect(func(): _ir_para("Loja"))
 	correr_button.pressed.connect(func(): _ir_para("Correr"))
 	
+	_instanciar_visual_do_jogador()
+	
 	# Opcional: Imprime as informações salvas no console para verificação
 	print("--- Tela Principal Carregada ---")
 	print("Jogador: " + PlayerData.player_name)
+	print("Carro selecionado: " + PlayerData.selected_car)
 	print("Personagem: " + PlayerData.selected_character)
+
+func _instanciar_visual_do_jogador():
+	# 1. Cria a instância
+	player_visual_instance = PLAYER_VISUAL_CENA.instantiate()
+	
+	# 2. Adiciona como filho da Tela Principal
+	# Adicionar a um nó que garanta a centralização é o ideal (ex: um CenterContainer que você adicionou)
+	# Exemplo: Adicionando diretamente ao nó raiz (Control)
+	add_child(player_visual_instance)
+	
+	# 3. Posiciona o visual (ajuste este valor para o meio da sua tela)
+	# player_visual_instance.global_position = Vector2(480, 250) # Exemplo de posição (meio da tela)
+	
+	# Se você adicionou um CenterContainer (como no Passo 16.1), adicione a ele
+	var carro_sprite_node: Sprite2D = player_visual_instance.get_node("CarroSprite")
+	var personagem_sprite_node: Sprite2D = player_visual_instance.get_node("PersonagemSprite")
+	
+	player_visual_instance.remove_child(carro_sprite_node)
+	player_visual_instance.remove_child(personagem_sprite_node)
+	
+	container_car.add_child(carro_sprite_node)
+	container_character.add_child(personagem_sprite_node)
+	
+	player_visual_instance.queue_free()
+	
+	carro_sprite_node.position = Vector2.ZERO
+	personagem_sprite_node.position = Vector2.ZERO
+	
+	# player_visual_instance.position = Vector2.ZERO # Posição zero relativa ao CenterContainer
 
 # Função centralizada para lidar com a navegação para outras cenas
 func _ir_para(destino: String):
