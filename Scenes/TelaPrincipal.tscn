@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3f2w1c0fje6e"]
+[gd_scene load_steps=8 format=3 uid="uid://c3f2w1c0fje6e"]
 
 [ext_resource type="Script" uid="uid://6f0r884paeuu" path="res://Scenes/TelaPrincipal.gd" id="1_6i7ux"]
 [ext_resource type="Texture2D" uid="uid://7mgyat02kink" path="res://Assets/Screen/Fundo_Home.png" id="2_scl28"]
-[ext_resource type="Texture2D" uid="uid://b2d23myyp5eww" path="res://Objects/Personagem_Allan.png" id="3_oeeft"]
+[ext_resource type="Texture2D" uid="uid://cao5v4xbbkkb" path="res://Objects/Carro_Gol.png" id="3_paq3v"]
+[ext_resource type="Texture2D" uid="uid://det6p0p0lkfr3" path="res://Assets/Screen/Sombra.png" id="5_lvm8x"]
+[ext_resource type="Texture2D" uid="uid://b48skeg4pcc8g" path="res://Objects/Logo_Black.png" id="6_nfk6a"]
+[ext_resource type="Texture2D" uid="uid://ds6mbhu0qhkys" path="res://Assets/Screen/buttons/correr_button.png" id="6_paq3v"]
+[ext_resource type="Texture2D" uid="uid://d3p585mcsw6ds" path="res://Assets/Screen/buttons/garagem_button.png" id="7_lvm8x"]
 
 [node name="TelaPrincipal" type="Control"]
 layout_mode = 3
@@ -60,21 +64,59 @@ texture = ExtResource("2_scl28")
 
 [node name="Carro" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 287.0
-offset_top = 396.0
-offset_right = 878.0
-offset_bottom = 563.0
+offset_left = 247.0
+offset_top = 420.0
+offset_right = 838.0
+offset_bottom = 587.0
+texture = ExtResource("3_paq3v")
+expand_mode = 1
 
 [node name="Personagem" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 668.0
-offset_top = 320.0
-offset_right = -332.0
-offset_bottom = -62.0
+offset_left = 640.0
+offset_top = 359.0
+offset_right = -376.0
+offset_bottom = -51.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_oeeft")
 expand_mode = 1
+
+[node name="Sombra" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 503.0
+offset_right = 1151.0
+offset_bottom = 642.0
+texture = ExtResource("5_lvm8x")
+expand_mode = 1
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 474.0
+offset_top = 35.0
+offset_right = 610.899
+offset_bottom = 69.0
+texture = ExtResource("6_nfk6a")
+expand_mode = 3
+
+[node name="CorrerImageButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 912.0
+offset_top = 380.0
+offset_right = 3034.0
+offset_bottom = 760.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("6_paq3v")
+stretch_mode = 0
+
+[node name="GaragemImageButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -21.0
+offset_top = 383.0
+offset_right = 1634.0
+offset_bottom = 813.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("7_lvm8x")
+stretch_mode = 0

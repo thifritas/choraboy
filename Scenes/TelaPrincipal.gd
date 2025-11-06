@@ -1,59 +1,124 @@
 # TelaPrincipal.gd
 extends Control
 
-# Referências aos botões
-@onready var garagem_button: Button = $GaragemButton  # Ajuste os nomes dos nós conforme sua estrutura
+# --- REFERÊNCIAS DOS BOTÕES ---
+# (Botão de Garagem atualizado para TextureButton)
+@onready var garagem_image_button: TextureButton = $GaragemImageButton 
 @onready var configuracao_button: Button = $ConfiguracaoButton
 @onready var loja_button: Button = $LojaButton
-@onready var correr_button: Button = $CorrerButton
+@onready var correr_image_button: TextureButton = $CorrerImageButton
 
+# --- REFERÊNCIAS VISUAIS ---
+# (Atualizado para TextureRect conforme seu feedback de erro)
+@onready var personagem_sprite: TextureRect = $Personagem 
+
+# --- VARIÁVEIS DE ANIMAÇÃO ---
+var correr_button_pos_original: Vector2
+
+# -------------------------------------------------------------------
+# A Função _ready() COMEÇA AQUI
+# -------------------------------------------------------------------
 func _ready():
-	# Conecta todos os botões a uma função de navegação, passando o destino
-	garagem_button.pressed.connect(func(): _ir_para("Garagem"))
+	# Conecta os botões do menu
+	# (Conexão da Garagem atualizada)
+	garagem_image_button.pressed.connect(func(): _ir_para("Garagem")) 
+	
 	configuracao_button.pressed.connect(func(): _ir_para("Configuracao"))
 	loja_button.pressed.connect(func(): _ir_para("Loja"))
-	correr_button.pressed.connect(func(): _ir_para("Correr"))
+	correr_image_button.pressed.connect(func(): _ir_para("Correr"))
 	
-	# Opcional: Imprime as informações salvas no console para verificação
+	# Imprime as informações salvas no console
 	print("--- Tela Principal Carregada ---")
 	print("Jogador: " + PlayerData.player_name)
 	print("Personagem: " + PlayerData.selected_character)
+	
+	# Chama as funções para configurar a tela
+	_carregar_visual_personagem()
+	_animar_botao_correr()
+# 
+# A Função _ready() TERMINA AQUI
+# -------------------------------------------------------------------
 
-# Função centralizada para lidar com a navegação para outras cenas
+
+# -------------------------------------------------------------------
+# A Função _ir_para() COMEÇA AQUI
+# -------------------------------------------------------------------
 func _ir_para(destino: String):
 	var caminho_cena: String = ""
-	
 	match destino:
 		"Garagem":
 			caminho_cena = "res://Scenes/TelaGaragem.tscn"
-			# O próximo passo é criar esta cena
 		"Correr":
-			caminho_cena = "res://Scenes/TelaSelecaoMapa.tscn"
-			# Pulamos a tela de corrida e vamos direto para a seleção de mapa
+			caminho_cena = "res://Scenes/TelaSelecaoMapa.tscn" 
 		"Configuracao":
-			# Scene temporária, pois você não especificou o conteúdo ainda
 			print("Navegando para Configuração (Cena a ser criada).")
-			# caminho_cena = "res://Scenes/TelaConfiguracao.tscn" 
-			return # Apenas para fins de teste, se a cena não existir
+			return 
 		"Loja":
-			# Scene temporária
 			print("Navegando para Loja (Cena a ser criada).")
-			# caminho_cena = "res://Scenes/TelaLoja.tscn"
-			return # Apenas para fins de teste, se a cena não existir
+			return
 		_:
 			print("Erro de navegação: Destino desconhecido: " + destino)
 			return
-			
-	# Executa a troca de cena se o caminho não estiver vazio
+
 	get_tree().change_scene_to_file(caminho_cena)
+#
+# A Função _ir_para() TERMINA AQUI
+# -------------------------------------------------------------------
+
 
 # -------------------------------------------------------------------
-# Documentação:
-# 1. @onready var ...: Acessa os botões. Lembre-se de nomeá-los de forma clara 
-#    no editor Godot (ex: GaragemButton, CorrerButton).
-# 2. _ready(): Conecta a ação de pressionar cada botão à função '_ir_para()', 
-#    passando o nome da próxima tela como argumento.
-# 3. _ir_para(destino: String): Função de navegação com a estrutura 'match' (similar ao switch). 
-#    Isso torna o código limpo, pois só precisamos de uma função para todos os botões.
-# 4. get_tree().change_scene_to_file(): O comando final para carregar a nova cena.
+# A Função _carregar_visual_personagem() COMEÇA AQUI
+# -------------------------------------------------------------------
+func _carregar_visual_personagem():
+	var personagem_escolhido: String = PlayerData.selected_character
+	
+	if personagem_escolhido == "Mika":
+		# Carrega a imagem da Mika
+		personagem_sprite.texture = load("res://Objects/Personagem_Mika.png")
+	elif personagem_escolhido == "Allan":
+		# Carrega a imagem do Allan
+		personagem_sprite.texture = load("res://Objects/Personagem_Allan.png")
+	else:
+		# Se, por algum motivo, nenhum personagem foi selecionado
+		print("AVISO: Nenhum personagem selecionado. Escondendo o sprite.")
+		personagem_sprite.visible = false # Esconde o nó
+#
+# A Função _carregar_visual_personagem() TERMINA AQUI
+# -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# A Função _animar_botao_correr() COMEÇA AQUI
+# -------------------------------------------------------------------
+func _animar_botao_correr():
+	# 1. Guarda a posição original para onde o botão deve voltar
+	correr_button_pos_original = correr_image_button.position
+
+	# 2. Cria um Tween (gerenciador de animação)
+	var tween = create_tween()
+	
+	# 3. Define o loop para que a animação nunca pare
+	tween.set_loops() 
+	
+	# 4. Define a animação:
+	# (Move 10 pixels para a direita em 0.5 segundos)
+	tween.tween_property(
+		correr_image_button, # O alvo
+		"position:x", # A propriedade (apenas o eixo X)
+		correr_button_pos_original.x + 10, # O destino
+		0.5 # Duração
+	).set_trans(Tween.TRANS_SINE) # Transição suave
+
+	# (Move de volta para a posição original em 0.5 segundos)
+	tween.tween_property(
+		correr_image_button, 
+		"position:x", 
+		correr_button_pos_original.x, 
+		0.5
+	).set_trans(Tween.TRANS_SINE)
+	
+	# (Espera 0.3 segundos antes de recomeçar o loop)
+	tween.tween_interval(0.3)
+#
+# A Função _animar_botao_correr() TERMINA AQUI
 # -------------------------------------------------------------------

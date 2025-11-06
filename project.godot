@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Choraboy"
+run/main_scene="uid://c3f2w1c0fje6e"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
