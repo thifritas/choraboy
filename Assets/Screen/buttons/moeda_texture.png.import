@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7mgyat02kink"
-path="res://.godot/imported/Fundo_Home.png-c889d4a3de8c949255329e816b349326.ctex"
+uid="uid://dgmw7gvdorp2o"
+path="res://.godot/imported/moeda_texture.png-4404597bec68c16aef94b968b3ce56e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Screen/Fundo_Home.png"
-dest_files=["res://.godot/imported/Fundo_Home.png-c889d4a3de8c949255329e816b349326.ctex"]
+source_file="res://Assets/Screen/buttons/moeda_texture.png"
+dest_files=["res://.godot/imported/moeda_texture.png-4404597bec68c16aef94b968b3ce56e3.ctex"]
 
 [params]
 

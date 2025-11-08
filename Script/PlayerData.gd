@@ -7,6 +7,10 @@ var selected_character: String = "" # Pode ser "Mika" ou "Allan"
 var car_color: Color = Color.WHITE # Cor inicial, vamos usar depois
 var selected_map: String = "" # Mapa selecionado (São Paulo ou Rio de Janeiro)
 var selected_car: String = "gol" # Carro inicial padrão
+
+# Começa o jogador com 1200
+var player_money: int = 1200
+
 # -------------------------------------------------------------------
 # Documentação:
 # 1. extends Node: Singleton não precisa de uma representação visual.
