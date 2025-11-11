@@ -85,7 +85,7 @@ expand_icon = true
 [node name="TextureRect" type="TextureRect" parent="Button"]
 layout_mode = 0
 offset_left = 15.0
-offset_top = 21.0
+offset_top = 22.0
 offset_right = 130.0
 offset_bottom = 117.0
 texture = ExtResource("4_nto0g")
