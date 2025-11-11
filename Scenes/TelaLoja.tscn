@@ -1,0 +1,132 @@
+[gd_scene load_steps=4 format=3 uid="uid://c37y4flf85dai"]
+
+[ext_resource type="Script" uid="uid://bc3muk7fbtqft" path="res://Scenes/TelaLoja.gd" id="1_q4cfh"]
+[ext_resource type="Texture2D" uid="uid://bgaw7pfcecq4p" path="res://Assets/Screen/buttons/configCarro.svg" id="3_blekp"]
+[ext_resource type="Texture2D" uid="uid://jouoo75o4xr1" path="res://Assets/Screen/buttons/Frame nome carro.svg" id="4_p170e"]
+
+[node name="TelaLoja" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q4cfh")
+
+[node name="ConfigCarro" type="Sprite2D" parent="."]
+position = Vector2(837.271, 577.438)
+scale = Vector2(0.174664, 0.174664)
+texture = ExtResource("3_blekp")
+
+[node name="StatusCompraLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 20.0
+
+[node name="ComprarButton" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="VoltarButton" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="VelocidadeBar" type="ProgressBar" parent="."]
+layout_mode = 2
+offset_left = 979.0
+offset_top = 520.0
+offset_right = 1019.0
+offset_bottom = 544.0
+
+[node name="FrenagemBar" type="ProgressBar" parent="."]
+layout_mode = 2
+offset_left = 980.0
+offset_top = 551.0
+offset_right = 1020.0
+offset_bottom = 575.0
+
+[node name="PesoBar" type="ProgressBar" parent="."]
+layout_mode = 2
+offset_left = 983.0
+offset_top = 586.0
+offset_right = 1023.0
+offset_bottom = 610.0
+
+[node name="ResistenciaBar" type="ProgressBar" parent="."]
+layout_mode = 2
+offset_left = 984.0
+offset_top = 618.0
+offset_right = 1024.0
+offset_bottom = 642.0
+
+[node name="Velocidade" type="Label" parent="."]
+layout_mode = 2
+offset_left = 708.0
+offset_top = 538.0
+offset_right = 841.0
+offset_bottom = 558.0
+text = "Velocidade"
+
+[node name="Frenagem" type="Label" parent="."]
+layout_mode = 2
+offset_left = 717.0
+offset_top = 568.0
+offset_right = 823.0
+offset_bottom = 588.0
+text = "Frenagem"
+
+[node name="Peso" type="Label" parent="."]
+layout_mode = 2
+offset_left = 746.0
+offset_top = 593.0
+offset_right = 799.0
+offset_bottom = 613.0
+text = "Peso"
+
+[node name="Resistencia" type="Label" parent="."]
+layout_mode = 2
+offset_left = 707.0
+offset_top = 619.0
+offset_right = 851.0
+offset_bottom = 639.0
+text = "Resistencia"
+
+[node name="SetaEsquerdaButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 190.0
+offset_top = 266.0
+offset_right = 212.0
+offset_bottom = 306.0
+text = "<"
+
+[node name="SetaDireitaButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 928.0
+offset_top = 283.0
+offset_right = 950.0
+offset_bottom = 323.0
+text = ">"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 525.0
+offset_right = 486.0
+offset_bottom = 611.0
+texture = ExtResource("4_p170e")
+expand_mode = 1
+
+[node name="NomeCarroLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 529.0
+offset_right = -670.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Nome carro"
+horizontal_alignment = 1
+vertical_alignment = 1
