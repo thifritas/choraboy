@@ -38,6 +38,7 @@ texture = ExtResource("2_a4noo")
 expand_mode = 1
 
 [node name="VoltarButton2" type="Button" parent="."]
+layout_mode = 0
 offset_top = 40.0
 offset_right = 144.0
 offset_bottom = 88.0
