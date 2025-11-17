@@ -9,21 +9,32 @@ extends Control
 
 # --- REFERÊNCIAS VISUAIS ---
 @onready var personagem_sprite: TextureRect = $PersonagemSprite
-
-### AJUSTADO: REFERÊNCIAS DO CARRO ###
-# (Assumindo que estão DENTRO do CarContainer)
 @onready var car_container: Control = $CarContainer
 @onready var chassis: TextureRect = $CarContainer/Chassis
 @onready var roda_frente: TextureRect = $CarContainer/RodaFrente
 @onready var roda_tras: TextureRect = $CarContainer/RodaTras
 
+# --- REFERÊNCIAS DO POPUP DE CONFIGURAÇÕES ---
+@onready var config_popup_layer: CanvasLayer = $ConfigPopupLayer
+@onready var fechar_config_button: TextureButton = $ConfigPopupLayer/Panel/FecharButton
+@onready var salvar_config_button: TextureButton = $ConfigPopupLayer/SalvarButton
+@onready var sair_conta_button: TextureButton = $ConfigPopupLayer/SairContaButton
+
+### NOVO: REFERÊNCIAS DOS BOTÕES DE ÁUDIO ###
+# (ASSUMINDO que eles estão dentro do 'Panel' e se chamam assim)
+@onready var musica_button: TextureButton = $ConfigPopupLayer/Panel/MusicaButton
+@onready var som_button: TextureButton = $ConfigPopupLayer/Panel/SomButton
+@onready var vibra_button: TextureButton = $ConfigPopupLayer/Panel/VibraButton
+
 # --- VARIÁVEIS DE ANIMAÇÃO ---
 var correr_button_pos_original: Vector2
-
-### VARIÁVEIS DE ANIMAÇÃO DO CARRO ###
 var is_car_moving: bool = false
-var rotation_speed: float = 360.0 
-### FIM AJUSTADO ###
+var rotation_speed: float = 360.0
+
+### NOVO: VARIÁVEIS DE ESTADO DAS CONFIGURAÇÕES ###
+var is_music_on: bool = true
+var is_sfx_on: bool = true
+var is_vibration_on: bool = true
 
 
 # -------------------------------------------------------------------
@@ -32,37 +43,112 @@ var rotation_speed: float = 360.0
 func _ready():
 	# Conecta os botões do menu
 	garagem_image_button.pressed.connect(func(): _ir_para("Garagem"))
-	configuracao_button.pressed.connect(func(): _ir_para("Configuracao"))
 	loja_button.pressed.connect(func(): _ir_para("Loja"))
 	correr_image_button.pressed.connect(func(): _ir_para("Correr"))
+	configuracao_button.pressed.connect(_on_abrir_configuracoes)
+	
+	# Conexões dos botões do popup
+	fechar_config_button.pressed.connect(_on_fechar_configuracoes)
+	salvar_config_button.pressed.connect(_on_fechar_configuracoes)
+	sair_conta_button.pressed.connect(_on_sair_da_conta)
+	
+	### NOVO: Conexões dos botões de áudio ###
+	musica_button.pressed.connect(_on_musica_button_pressed)
+	som_button.pressed.connect(_on_som_button_pressed)
+	vibra_button.pressed.connect(_on_vibra_button_pressed)
+	
+	# Garantir que o popup começa escondido
+	config_popup_layer.hide()
 	
 	# Configura a tela
 	_carregar_visual_personagem()
 	_animar_botao_correr()
 	_atualizar_dinheiro_label()
-	
-	### Inicia a animação do carro ###
 	_animar_carro_entrada()
+	
+	### NOVO: Define o visual inicial dos botões de áudio ###
+	_update_audio_visuals()
 # 
 # A Função _ready() TERMINA AQUI
 # -------------------------------------------------------------------
 
 
-### A Função _process() COMEÇA AQUI ###
+### FUNÇÕES DO POPUP DE CONFIGURAÇÕES ###
+
+func _on_abrir_configuracoes():
+	config_popup_layer.show()
+	print("Popup de Configurações aberto.")
+
+func _on_fechar_configuracoes():
+	config_popup_layer.hide()
+	print("Popup de Configurações fechado.")
+
+func _on_sair_da_conta():
+	config_popup_layer.hide()
+	PlayerData.player_name = ""
+	PlayerData.selected_character = ""
+	PlayerData.player_money = 0
+	get_tree().change_scene_to_file("res://Scenes/TelaCadastroNome.tscn")
+	print("Saindo da conta e voltando para TelaCadastroNome.")
+
+### NOVO: FUNÇÕES DE TOGGLE DOS BOTÕES DE ÁUDIO ###
+
+func _on_musica_button_pressed():
+	# Inverte o valor (se era 'true', vira 'false', e vice-versa)
+	is_music_on = !is_music_on
+	print("Música On: ", is_music_on)
+	_update_audio_visuals()
+
+func _on_som_button_pressed():
+	is_sfx_on = !is_sfx_on
+	print("SFX On: ", is_sfx_on)
+	_update_audio_visuals()
+
+func _on_vibra_button_pressed():
+	is_vibration_on = !is_vibration_on
+	print("Vibração On: ", is_vibration_on)
+	_update_audio_visuals()
+
+# -------------------------------------------------------------------
+# A FUNÇÃO AJUSTADA ESTÁ AQUI
+# -------------------------------------------------------------------
+### NOVO: FUNÇÃO PARA ATUALIZAR O VISUAL DOS BOTÕES ###
+
+func _update_audio_visuals():
+	
+	# Define a cor "desativada". 
+	# (0.3, 0.3, 0.3) é um cinza escuro. 
+	# Pode ajustar (ex: 0.5, 0.5, 0.5 para cinza médio)
+	var cor_desativada = Color(0.3, 0.3, 0.3, 1.0)
+	var cor_ativada = Color.WHITE # Cor normal
+	
+	# --- Música ---
+	if is_music_on:
+		musica_button.modulate = cor_ativada
+	else:
+		musica_button.modulate = cor_desativada
+		
+	# --- Som (SFX) ---
+	if is_sfx_on:
+		som_button.modulate = cor_ativada
+	else:
+		som_button.modulate = cor_desativada
+
+	# --- Vibração ---
+	if is_vibration_on:
+		vibra_button.modulate = cor_ativada
+	else:
+		vibra_button.modulate = cor_desativada
+
+# -------------------------------------------------------------------
+# Funções existentes
+# -------------------------------------------------------------------
+
 func _process(delta):
-	# Se o carro estiver em movimento, gira as rodas
 	if is_car_moving:
 		roda_frente.rotation_degrees += rotation_speed * delta
 		roda_tras.rotation_degrees += rotation_speed * delta
-#
-# A Função _process() TERMINA AQUI
-# -------------------------------------------------------------------
 
-
-# -------------------------------------------------------------------
-# A Função _ir_para() COMEÇA AQUI
-# (Sem alterações)
-# -------------------------------------------------------------------
 func _ir_para(destino: String):
 	var caminho_cena: String = ""
 	match destino:
@@ -71,23 +157,16 @@ func _ir_para(destino: String):
 		"Correr":
 			caminho_cena = "res://Scenes/TelaSelecaoMapa.tscn"
 		"Configuracao":
-			print("Navegando para Configuração (Cena a ser criada).")
+			print("Botão de Configuração agora abre um popup.")
 			return
 		"Loja":
-			# Certifica-te que este é o nome correto da tua cena da Loja
 			caminho_cena = "res://Scenes/TelaLoja.tscn"
 		_:
 			print("Erro de navegação: Destino desconhecido: " + destino)
 			return
-	get_tree().change_scene_to_file(caminho_cena)
-#
-# A Função _ir_para() TERMINA AQUI
-# -------------------------------------------------------------------
+	if caminho_cena != "":
+		get_tree().change_scene_to_file(caminho_cena)
 
-# -------------------------------------------------------------------
-# A Função _carregar_visual_personagem() COMEÇA AQUI
-# (Sem alterações)
-# -------------------------------------------------------------------
 func _carregar_visual_personagem():
 	var personagem_escolhido: String = PlayerData.selected_character
 	if personagem_escolhido == "Mika":
@@ -97,15 +176,7 @@ func _carregar_visual_personagem():
 	else:
 		print("AVISO: Nenhum personagem selecionado. Escondendo o sprite.")
 		personagem_sprite.visible = false
-#
-# A Função _carregar_visual_personagem() TERMINA AQUI
-# -------------------------------------------------------------------
 
-
-# -------------------------------------------------------------------
-# A Função _animar_botao_correr() COMEÇA AQUI
-# (Sem alterações)
-# -------------------------------------------------------------------
 func _animar_botao_correr():
 	correr_button_pos_original = correr_image_button.position
 	var tween = create_tween()
@@ -117,60 +188,30 @@ func _animar_botao_correr():
 		correr_image_button, "position:x", correr_button_pos_original.x, 0.5
 	).set_trans(Tween.TRANS_SINE)
 	tween.tween_interval(0.3)
-#
-# A Função _animar_botao_correr() TERMINA AQUI
-# -------------------------------------------------------------------
 
-# -------------------------------------------------------------------
-# A Função _atualizar_dinheiro_label() COMEÇA AQUI
-# (Sem alterações)
-# -------------------------------------------------------------------
 func _atualizar_dinheiro_label():
 	var dinheiro_atual: int = PlayerData.player_money
 	dinheiro_label.text = "$ " + str(dinheiro_atual) + ",00"
-#
-# A Função _atualizar_dinheiro_label() TERMINA AQUI
-# -------------------------------------------------------------------
 
-
-### FUNÇÕES DE ANIMAÇÃO DO CARRO ###
-# -------------------------------------------------------------------
-# 1. Função que inicia a animação
-# -------------------------------------------------------------------
 func _animar_carro_entrada():
-	# 1. Pega a posição FINAL (a que definiste no editor)
 	var pos_final_x = car_container.position.x
-	
-	# 2. Calcular Posição INICIAL
 	if car_container.size.x == 0:
 		print("AVISO: O 'Size' do CarContainer é 0. A animação pode falhar.")
 		print("Ajusta o 'Size' do CarContainer no Inspetor (Layout -> Transform)")
 	
-	### AJUSTADO AQUI ###
-	# Começa na largura do carro, e subtrai mais 200 pixels
-	# para começar mais longe da tela.
 	var start_pos_x = -car_container.size.x - 400 
 	
-	# 3. Definir estado inicial
-	# Coloca o CARRO INTEIRO (o contentor) na posição inicial
 	car_container.position.x = start_pos_x
-	is_car_moving = true # Avisa ao _process para começar a girar as rodas
+	is_car_moving = true
 	
-	# 4. Criar o Tween (o animador)
 	var tween = create_tween()
 	
-	# 5. Configurar a animação de movimento
-	# (A duração de 2.0 segundos continua a mesma, mas a distância
-	# a percorrer é maior, o que o fará parecer um pouco mais rápido.)
 	tween.tween_property(car_container, "position:x", pos_final_x, 2.0)\
 		 .set_trans(Tween.TRANS_CUBIC)\
 		 .set_ease(Tween.EASE_OUT)
 		 
-	# 6. Conectar o sinal de "terminado"
 	tween.finished.connect(_on_carro_animacao_terminada)
-# -------------------------------------------------------------------
-# 2. Função chamada quando a animação de movimento termina
-# -------------------------------------------------------------------
+
 func _on_carro_animacao_terminada():
-	is_car_moving = false # Para de girar as rodas
+	is_car_moving = false
 	print("Animação do carro principal concluída.")
