@@ -153,7 +153,10 @@ scale = Vector2(0.15, 0.15)
 texture_normal = ExtResource("9_q5dr6")
 
 [node name="ConfigPopupLayer" type="CanvasLayer" parent="."]
+<<<<<<< HEAD
 visible = false
+=======
+>>>>>>> f56cf7e86ee3cc6bed412fac0235ab5282cbf038
 
 [node name="ColorRect" type="ColorRect" parent="ConfigPopupLayer"]
 anchors_preset = 8
@@ -202,7 +205,10 @@ scale = Vector2(0.15, 0.15)
 texture_normal = ExtResource("14_ke7md")
 
 [node name="SomButton" type="TextureButton" parent="ConfigPopupLayer/Panel"]
+<<<<<<< HEAD
 layout_mode = 0
+=======
+>>>>>>> f56cf7e86ee3cc6bed412fac0235ab5282cbf038
 offset_left = 235.0
 offset_top = 104.0
 offset_right = 618.0
@@ -220,7 +226,10 @@ scale = Vector2(0.15, 0.15)
 texture_normal = ExtResource("16_1d50t")
 
 [node name="VibraButton" type="TextureButton" parent="ConfigPopupLayer/Panel"]
+<<<<<<< HEAD
 layout_mode = 0
+=======
+>>>>>>> f56cf7e86ee3cc6bed412fac0235ab5282cbf038
 offset_left = 333.0
 offset_top = 103.0
 offset_right = 716.0

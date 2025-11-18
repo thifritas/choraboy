@@ -8,6 +8,10 @@ var car_color: Color = Color.WHITE # Cor inicial, vamos usar depois
 var selected_map: String = "" # Mapa selecionado (São Paulo ou Rio de Janeiro)
 var selected_car: String = "gol quadrado" # Carro inicial padrão
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f56cf7e86ee3cc6bed412fac0235ab5282cbf038
 # Começa o jogador com 1200
 var player_money: int = 1200
 
@@ -29,7 +33,11 @@ const CAR_ATTRIBUTES: Dictionary = {
 		"frenagem": 0.9, # Freio melhor que o Gol
 		"peso": 0.8,    # Mais pesado que o Gol
 		"resistencia": 0.9,
+<<<<<<< HEAD
 		"valor": 1100  # Valor de compra
+=======
+		"valor": 1500  # Valor de compra
+>>>>>>> f56cf7e86ee3cc6bed412fac0235ab5282cbf038
 	}
 }
 
